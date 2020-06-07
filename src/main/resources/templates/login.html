@@ -1,0 +1,15 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Login</title></head>
+<body>
+<h1>Login</h1>
+<!--/*@thymesVar id="loginForm" type=""*/-->
+<form th:action="@{/login}" th:object="${loginForm}" method='POST'>
+    <p th:if="${invalidCredentials}" class="error">Username or Password is Wrong!</p>
+    <label for="username">User:</label>
+    <input type='text' id='username' name='username' value=''>
+    <label for="password"></label><input type='password' id="password" name='password'/>
+    <label for="submit"><input name="submit" id="submit" type="submit" value="submit"/></label>
+
+</form>
+</body>
+</html>
