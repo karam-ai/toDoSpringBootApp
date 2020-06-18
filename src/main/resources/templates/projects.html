@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<div th:replace="~{fragments/base_up::base_up}"></div>
+
+
+<table>
+    <div class="w3-padding w3-xlarge w3-text-black">
+        <thead>
+        <tr>
+            <th>Project:</th>
+            <th>Status:</th>
+            <th>Options:</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="Project:${Projects}">
+
+            <td>
+                <a th:href="'/project/'+${Project.getId()}" th:text="${Project.name}"></a>
+            </td>
+            <td>
+                <span th:text="${Project.countOpenTodo()}"></span><span> open tasks to do</span>
+
+            </td>
+            <td>
+                <a th:href="'/edit/'+${Project.id}">Edit</a>
+                &nbsp;&nbsp;&nbsp;
+                <a th:href="'/remove/'+${Project.id}">Delete</a>
+            </td>
+        </tr>
+
+        </tbody>
+
+    </div>
+</table>
+<a class="button" th:href="'/new_project'">new Project</a>
+
+<div th:replace="~{fragments/base_down::base_down}"></div>
+</html>

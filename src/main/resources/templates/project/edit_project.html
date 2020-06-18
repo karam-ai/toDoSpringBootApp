@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<div th:replace="~{fragments/base_up::base_up}"></div>
+
+
+<h2 style="font-size:2vw;">Update Project</h2>
+<form th:action="@{/edit}" th:object="${Project}" method="post">
+
+    <label for="project_name">Project Name</label>
+    <input type="text" id="project_name" th:value="${name}" name="project_name" autofocus="autofocus"/>
+    <input type="submit" class="button" value="Save"/>
+
+</form>
+<div th:replace="~{fragments/base_down::base_down}"></div>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<div th:replace="~{fragments/base_up::base_up}"></div>
+<h1 th:text="${project.getName()}"></h1>
+
+<table>
+    <div class="box w3-padding w3-xlarge w3-text-black">
+        <thead>
+        <tr>
+            <th>Todo:</th>
+            <th>Status</th>
+            <th>Options</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="todo_:${todo}">
+            <td>
+                <a th:href="'/todo_/edit/'+${todo_.id}" th:text="${todo_.getName()}"></a>
+            </td>
+            <td th:text="${todo_.getStatus()}"></td>
+            <td>
+                <a th:href="'/todo_/edit/'+${todo_.id}">Edit</a>
+                &nbsp;&nbsp;&nbsp;
+                <a th:href="'/todo_/delete/'+${todo_.id}">Delete</a>
+                &nbsp;&nbsp;&nbsp;
+                <a th:href=" '/todo_/todo/'+${todo_.id}">View ToDo</a>
+                &nbsp;&nbsp;&nbsp;
+                <a th:href="'/todo_/add_todo/'+${todo_.id}">Add Todo </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="button" th:href="'/new_project'">new Project</a>
+            </td>
+        </tr>
+
+        </tbody>
+    </div>
+</table>
+
+<div th:replace="~{fragments/base_down::base_down}"></div>
+</html>

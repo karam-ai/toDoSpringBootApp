@@ -2,30 +2,41 @@ package com.example.demo.controller;
 
 import com.example.demo.data_provider.Initialize;
 import com.example.demo.models.Project;
+import com.example.demo.models.ToDoMain;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
 
 @Controller
-@RequestMapping("")
-public class MainController {
+@RequestMapping("project")
+public class ProjectController {
     private final Initialize management = Initialize.getInstance();
     Project project;
 
-    @RequestMapping(value = "")
-    public String getProjects(Model model) {
-        model.addAttribute("Projects", management.getProjects());
-        return "projects";
+    @RequestMapping(value = "/{id}")
+    public String getProject(@PathVariable Integer id, Model model) {
+        for (Project project : management.getProjects()) {
+            if (project.getId() == id) {
+                this.project = project;
+            }
+        }
+        model.addAttribute("project", project);
+        model.addAttribute("todo", project.getToDoMains());
+        return "project/project_overview";
     }
+
 
     /**
      * @get get new project form to use it to add new project
      */
-    @RequestMapping(value = "/new_project", method = RequestMethod.GET)
-    public String newProject(@ModelAttribute(name = "project_name") Project project) {
-        return "project/new_project";
+    @RequestMapping(value = "/new_todo", method = RequestMethod.GET)
+    public String newTodo(@ModelAttribute(name = "todo_name") ToDoMain toDoMain) {
+        return "todo/new_todo";
     }
 
     /**
@@ -64,7 +75,6 @@ public class MainController {
         Initialize.delete(id);
         return "redirect:/";
     }
-
 
 
 }

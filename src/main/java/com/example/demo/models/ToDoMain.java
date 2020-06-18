@@ -3,11 +3,11 @@ package com.example.demo.models;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class ToDoMain {private static int id = 0;
+public class ToDoMain {
+    private static int id = 0;
     String name;
-    Date dateCreated, dateModified, dateDone;
+    Date dateCreated, dateModified, dateClosed;
     boolean done;
-    ArrayList<ToDoSub> toDoSubs;
 
 
     public ToDoMain(String name) {
@@ -15,16 +15,17 @@ public class ToDoMain {private static int id = 0;
         this.dateCreated = new Date();
         this.done = false;
         id++;
-        this.toDoSubs = new ArrayList<>();
     }
 
-    public ArrayList<ToDoSub> getToDoSubs() {
-        return toDoSubs;
+
+    public String getStatus() {
+        if (this.done) {
+            return "Done";
+        } else {
+            return "In Progress";
+        }
     }
 
-    public void setToDoSubs(ArrayList<ToDoSub> toDoSubs) {
-        this.toDoSubs = toDoSubs;
-    }
 
     public static int getId() {
         return id;
@@ -38,8 +39,8 @@ public class ToDoMain {private static int id = 0;
         return dateCreated;
     }
 
-    public Date getDateDone() {
-        return dateDone;
+    public Date getDateClosed() {
+        return dateClosed;
     }
 
     public Date getDateModified() {
@@ -54,8 +55,8 @@ public class ToDoMain {private static int id = 0;
         this.dateCreated = dateCreated;
     }
 
-    public void setDateDone(Date dateDone) {
-        this.dateDone = dateDone;
+    public void setDateClosed(Date dateClosed) {
+        this.dateClosed = dateClosed;
     }
 
     public void setDateModified(Date dateModified) {

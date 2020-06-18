@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<h1>Login</h1>
+<!--/*@thymesVar id="loginForm" type=""*/-->
+<form th:action="@{/login}" th:object="${loginForm}" method='POST'>
+<!--    <p th:if="${invalidCredentials}" class="error">Username or Password is Wrong!</p>-->
+    <label for="username">User:</label>
+    <input type='text' id='username' name='username' value=''>
+    <label for="password"></label><input type='password' id="password" name='password'/>
+    <label for="submit"><input name="submit" id="submit" type="submit" value="submit"/></label>
+
+</form>
+<dev th:replace="~{fragments/header::header}">
+</dev>
+
+</html>
